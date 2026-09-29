@@ -1,7 +1,4 @@
-#Requires -Modules @{ ModuleName = 'InvokeBuild'; ModuleVersion = '5.0.0' }
-
-[CmdletBinding()]
-param()
+#Requires -Modules @{ ModuleName = 'InvokeBuild'; ModuleVersion = '5.12.1' }
 
 $ProjectRoot = (Resolve-Path -Path (Join-Path $BuildRoot '..')).Path
 $ModuleName = '{{ModuleName}}'

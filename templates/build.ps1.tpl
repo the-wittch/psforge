@@ -1,10 +1,6 @@
 #Requires -Version 5.1
-[CmdletBinding()]
 param(
-    [Parameter(Position = 0)]
     [string[]]$Task = @('.'),
-
-    [Parameter()]
     [switch]$NoInstall
 )
 
@@ -95,6 +91,6 @@ if (-not $NoInstall) {
     }
 }
 
-Import-Module -Name InvokeBuild -MinimumVersion '5.0.0' -Force
+Import-Module -Name InvokeBuild -MinimumVersion '5.12.1' -Force
 $buildFile = Join-Path -Path $ProjectRoot -ChildPath 'build/{{ModuleName}}.build.ps1'
 Invoke-Build -Task $Task -File $buildFile
