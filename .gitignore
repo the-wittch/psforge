@@ -1,0 +1,15 @@
+output/
+.modules/
+*.nupkg
+testResults*.xml
+
+.DS_Store
+Thumbs.db
+.idea/
+.vs/
+*.swp
+*~
+
+.env
+.env.*
+*.pfx

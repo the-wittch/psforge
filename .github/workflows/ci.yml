@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run scaffolder tests
+        shell: pwsh
+        run: ./Invoke-Tests.ps1
+
+      - name: Smoke scaffold and build
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Import-Module ./src/PSForge -Force
+          $out = Join-Path ([System.IO.Path]::GetTempPath()) "ci-smoke-$([guid]::NewGuid().ToString('N'))"
+          New-Item -Path $out -ItemType Directory -Force | Out-Null
+          New-PSModule -Name CiSmoke -Path $out -Author 'CI' -Description 'CI smoke test' | Out-Null
+          Set-Location (Join-Path $out 'CiSmoke')
+          ./build.ps1
