@@ -1,6 +1,6 @@
 # PSForge
 
-[![CI](https://github.com/the-wittch/psforge/actions/workflows/ci.yml/badge.svg)](https://github.com/the-wittch/psforge/actions/workflows/ci.yml)
+[![CI](https://github.com/the-wittch/psforge/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/the-wittch/psforge/actions/workflows/ci.yml)
 
 Scaffold production-ready PowerShell modules. Clone and run — no Gallery required.
 
